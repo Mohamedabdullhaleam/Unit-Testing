@@ -35,5 +35,21 @@ export function formatDate(date: Date): string {
   return `${year}-${month}-${day}`;
 }
 
+export function validatePassword(password: string): boolean {
+  const hasSuitableLength = password.length >= 8;
+  let hasUppercase = false;
+  let hasNumber = false;
+  let hasSpecialChar = false;
+
+  const specialChars = "!@#$%^&*()_+-=[]{};':\"\\|,.<>/?";
+
+  for (const char of password) {
+    if (char >= "A" && char <= "Z") hasUppercase = true;
+    else if (!isNaN(Number(char))) hasNumber = true;
+    else if (specialChars.includes(char)) hasSpecialChar = true;
+  }
+  return hasSuitableLength && hasUppercase && hasNumber && hasSpecialChar;
+}
+// min 8 chars, 1 uppercase, 1 number, 1 special character
 const date = formatDate(new Date());
 console.log(date);
