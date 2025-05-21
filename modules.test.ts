@@ -1,5 +1,11 @@
 import { expect, test } from "@jest/globals";
-import { sum, isPrime, reverseString, getCharactersCount } from "./modules";
+import {
+  sum,
+  isPrime,
+  reverseString,
+  getCharactersCount,
+  formatDate,
+} from "./modules";
 
 describe("Sum", () => {
   test("sum test", () => {
@@ -60,5 +66,27 @@ describe("getCharactersCount", () => {
     const input = "a a! a?";
     const expected = { a: 3, " ": 2, "!": 1, "?": 1 };
     expect(getCharactersCount(input)).toEqual(expected);
+  });
+});
+
+describe("formatDate", () => {
+  test("formats full date correctly with double digits", () => {
+    const date = new Date("2025-12-25");
+    expect(formatDate(date)).toBe("2025-12-25");
+  });
+
+  test("formats single-digit month and day with leading zeros", () => {
+    const date = new Date("2025-01-05");
+    expect(formatDate(date)).toBe("2025-01-05");
+  });
+
+  test("handles leap year correctly", () => {
+    const date = new Date("2024-02-29");
+    expect(formatDate(date)).toBe("2024-02-29");
+  });
+
+  test("handles end of month correctly", () => {
+    const date = new Date("2025-04-30");
+    expect(formatDate(date)).toBe("2025-04-30");
   });
 });
