@@ -27,4 +27,13 @@ export function getCharactersCount(str: string): Record<string, number> {
   return count;
 }
 
-const mm = getCharactersCount("mohamed");
+export function formatDate(date: Date): string {
+  const year = date.getFullYear();
+  const month = date.getMonth() + 1;
+  const day = date.getDate();
+  console.log(day, month);
+  return `${year}-${month}-${day}`;
+}
+
+const date = formatDate(new Date());
+console.log(date);
