@@ -6,6 +6,7 @@ import {
   getCharactersCount,
   formatDate,
   validatePassword,
+  maskCardNumber,
 } from "./modules";
 
 describe("Sum", () => {
@@ -104,5 +105,27 @@ describe("Validate password", () => {
   });
   test("Passwordis passed our criteria", () => {
     expect(validatePassword("MHaleem_125")).toBe(true);
+  });
+});
+
+describe("maskCardNumber", () => {
+  test("Mask all but last 4 digits of a 16-digit card number", () => {
+    expect(maskCardNumber("1234567812345678")).toBe("************5678");
+  });
+
+  test("Only 4 should return **** for a 4-digit card number", () => {
+    expect(maskCardNumber("1234")).toBe("****");
+  });
+
+  test("should handle card numbers shorter than 4 digits", () => {
+    expect(maskCardNumber("12")).toBe("**");
+  });
+
+  test("should handle an empty string", () => {
+    expect(maskCardNumber("")).toBe("");
+  });
+
+  test("should handle non-digit characters (e.g., spaces or hyphens)", () => {
+    expect(maskCardNumber("1234-5678-9012-3456")).toBe("***************3456");
   });
 });

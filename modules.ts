@@ -51,7 +51,11 @@ export function validatePassword(password: string): boolean {
   return hasSuitableLength && hasUppercase && hasNumber && hasSpecialChar;
 }
 export function maskCardNumber(cardNumber: string): string {
-  const revealedNumber = cardNumber.slice(-4);
+  let revealedNumber: string = "";
+  if (cardNumber.length > 4) {
+    revealedNumber = cardNumber.slice(-4);
+  }
+
   const maskedNumber = revealedNumber.padStart(cardNumber.length, "*");
   console.log(maskedNumber);
   return maskedNumber;
