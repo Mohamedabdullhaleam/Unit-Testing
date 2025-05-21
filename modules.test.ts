@@ -5,6 +5,7 @@ import {
   reverseString,
   getCharactersCount,
   formatDate,
+  validatePassword,
 } from "./modules";
 
 describe("Sum", () => {
@@ -88,5 +89,19 @@ describe("formatDate", () => {
   test("handles end of month correctly", () => {
     const date = new Date("2025-04-30");
     expect(formatDate(date)).toBe("2025-04-30");
+  });
+});
+describe("Validate password", () => {
+  test("Password doesn't have any special charachters ", () => {
+    expect(validatePassword("Mohamed123")).toBe(false);
+  });
+  test("Password doesn't have any numbers ", () => {
+    expect(validatePassword("Mohamed@mohamed")).toBe(false);
+  });
+  test("Passwordis too short doesn't have any numbers ", () => {
+    expect(validatePassword("Moh_12")).toBe(false);
+  });
+  test("Passwordis passed our criteria", () => {
+    expect(validatePassword("MHaleem_125")).toBe(true);
   });
 });
