@@ -50,6 +50,14 @@ export function validatePassword(password: string): boolean {
   }
   return hasSuitableLength && hasUppercase && hasNumber && hasSpecialChar;
 }
+export function maskCardNumber(cardNumber: string): string {
+  const revealedNumber = cardNumber.slice(-4);
+  const maskedNumber = revealedNumber.padStart(cardNumber.length, "*");
+  console.log(maskedNumber);
+  return maskedNumber;
+}
+
+maskCardNumber("53556534354");
 // min 8 chars, 1 uppercase, 1 number, 1 special character
 const date = formatDate(new Date());
 console.log(date);
