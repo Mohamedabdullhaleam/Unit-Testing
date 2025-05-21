@@ -91,6 +91,7 @@ describe("formatDate", () => {
     expect(formatDate(date)).toBe("2025-04-30");
   });
 });
+
 describe("Validate password", () => {
   test("Password doesn't have any special charachters ", () => {
     expect(validatePassword("Mohamed123")).toBe(false);
